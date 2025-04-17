@@ -1,5 +1,5 @@
+import { Category, DeviceStatus } from '@prisma/client';
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { Category, DeviceStatus } from 'generated/prisma';
 
 export class CreateDeviceDto {
   @IsString()

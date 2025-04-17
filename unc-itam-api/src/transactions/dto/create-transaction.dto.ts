@@ -1,3 +1,4 @@
+import { TransactionStatus } from '@prisma/client';
 import {
   IsDate,
   IsEnum,
@@ -5,7 +6,6 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { TransactionStatus } from 'generated/prisma';
 
 export class CreateTransactionDto {
   @IsString()

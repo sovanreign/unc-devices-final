@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { DatabaseService } from 'src/database/database.service';
-import { DeviceStatus } from 'generated/prisma';
+import { DeviceStatus } from '@prisma/client';
 
 @Injectable()
 export class TransactionsService {

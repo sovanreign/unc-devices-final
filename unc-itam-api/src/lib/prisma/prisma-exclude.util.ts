@@ -5,7 +5,7 @@
  * https://medium.com/@hala.s.salim/enhancing-security-in-nestjs-with-prisma-excluding-sensitive-fields-86d9789c0823
  */
 
-import { Prisma } from 'generated/prisma';
+import { Prisma } from '@prisma/client';
 
 type A<T extends string> = T extends `${infer U}ScalarFieldEnum` ? U : never;
 type Entity = A<keyof typeof Prisma>;
