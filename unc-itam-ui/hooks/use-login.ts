@@ -13,7 +13,7 @@ export const useLogin = ({ onError }: UseLoginOptions = {}) => {
   return useMutation<LoginResponse, any, LoginInput>({
     mutationFn: login,
     onSuccess: (data: LoginResponse) => {
-      router.push("/dashboard");
+      router.push("/users");
     },
     onError: (error) => {
       onError?.(error);

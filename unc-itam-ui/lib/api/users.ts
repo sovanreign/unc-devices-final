@@ -28,7 +28,7 @@ export const getUser = async (id: string) => {
 };
 
 export const updateUser = async (id: string, data: UpdateUserInput) => {
-  const response = await api.put(`/users/${id}`, data, getAuthHeader());
+  const response = await api.patch(`/users/${id}`, data, getAuthHeader());
   return response.data;
 };
 

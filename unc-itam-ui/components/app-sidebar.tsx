@@ -51,6 +51,11 @@ const data = {
       icon: MdBook,
     },
     {
+      title: "Users",
+      url: "/users",
+      icon: MdDashboard,
+    },
+    {
       title: "History",
       url: "/history",
       icon: MdHistory,
