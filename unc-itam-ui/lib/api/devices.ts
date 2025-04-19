@@ -34,7 +34,7 @@ export const updateDevice = async (
   id: string,
   data: UpdateDeviceInput
 ): Promise<Device> => {
-  const response = await api.put(`/devices/${id}`, data, getAuthHeader());
+  const response = await api.patch(`/devices/${id}`, data, getAuthHeader());
   return response.data;
 };
 
