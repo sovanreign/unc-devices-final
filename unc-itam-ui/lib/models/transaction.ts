@@ -12,7 +12,7 @@ export interface Transaction {
   device: Device;
   purpose: string;
   borrowedDate: Date;
-  returnDate?: Date;
+  returnedDate?: Date;
   status: TransactionStatus;
   createdAt: Date;
   updatedAt: Date;

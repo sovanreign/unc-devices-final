@@ -34,7 +34,11 @@ export const updateTransaction = async (
   id: string,
   data: UpdateTransactionInput
 ) => {
-  const response = await api.put(`/transactions/${id}`, data, getAuthHeader());
+  const response = await api.patch(
+    `/transactions/${id}`,
+    data,
+    getAuthHeader()
+  );
   return response.data;
 };
 

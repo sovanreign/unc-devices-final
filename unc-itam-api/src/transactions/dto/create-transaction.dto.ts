@@ -1,4 +1,5 @@
 import { TransactionStatus } from '@prisma/client';
+import { Type } from 'class-transformer';
 import {
   IsDate,
   IsEnum,
@@ -24,10 +25,12 @@ export class CreateTransactionDto {
   @IsNotEmpty()
   purpose: string;
 
+  @Type(() => Date)
   @IsDate()
   @IsNotEmpty()
   borrowedDate: Date;
 
+  @Type(() => Date)
   @IsDate()
   @IsOptional()
   returnDate?: Date;

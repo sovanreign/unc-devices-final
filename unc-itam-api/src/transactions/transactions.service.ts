@@ -50,9 +50,18 @@ export class TransactionsService {
     });
   }
 
-  remove(id: string) {
-    return this.db.transaction.delete({
+  async remove(id: string) {
+    const tran = await this.findOne(id);
+
+    await this.db.transaction.delete({
       where: { id },
+    });
+
+    await this.db.device.update({
+      where: { id: tran.deviceId },
+      data: {
+        status: 'Available',
+      },
     });
   }
 }
