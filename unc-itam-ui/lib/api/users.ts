@@ -17,8 +17,11 @@ export const createUser = async (data: CreateUserInput) => {
   return response.data;
 };
 
-export const getUsers = async (): Promise<User[]> => {
-  const response = await api.get("/users", getAuthHeader());
+export const getUsers = async (q?: string): Promise<User[]> => {
+  const response = await api.get("/users", {
+    params: q ? { q } : {},
+    ...getAuthHeader(),
+  });
   return response.data;
 };
 

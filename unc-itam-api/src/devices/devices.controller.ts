@@ -8,6 +8,7 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { DevicesService } from './devices.service';
 import { CreateDeviceDto } from './dto/create-device.dto';
@@ -24,8 +25,8 @@ export class DevicesController {
   }
 
   @Get()
-  findAll() {
-    return this.devicesService.findAll();
+  findAll(@Query('q') q?: string) {
+    return this.devicesService.findAll(q);
   }
 
   @Get(':id')

@@ -29,7 +29,8 @@ import { useState } from "react";
 import DeleteUserDialog from "./components/delete-user-dialog";
 
 export default function Page() {
-  const { data: users = [], isLoading } = useUsers();
+  const [search, setSearch] = useState("");
+  const { data: users = [], isLoading } = useUsers(search);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [deleteUser, setDeleteUser] = useState<User | null>(null);
 
@@ -44,7 +45,8 @@ export default function Page() {
             type="search"
             placeholder="Search..."
             className="pl-10"
-            onChange={(e) => console.log(e.target.value)}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
 

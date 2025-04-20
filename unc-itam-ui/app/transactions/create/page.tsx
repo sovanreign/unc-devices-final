@@ -59,7 +59,7 @@ export default function CreateTransactionPage() {
     if (stored) {
       const parsed = JSON.parse(stored);
       setRole(parsed.role);
-      setUserId(parsed.id);
+      setUserId(parsed.sub);
     }
   }, []);
 

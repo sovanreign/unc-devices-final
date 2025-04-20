@@ -20,8 +20,11 @@ export const createDevice = async (
   return response.data;
 };
 
-export const getDevices = async () => {
-  const response = await api.get("/devices", getAuthHeader());
+export const getDevices = async (q?: string): Promise<Device[]> => {
+  const response = await api.get("/devices", {
+    params: q ? { q } : {},
+    ...getAuthHeader(),
+  });
   return response.data;
 };
 

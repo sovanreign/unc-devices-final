@@ -42,7 +42,7 @@ export default function TransactionDetailsPage() {
       {
         id: transaction.id,
         data: {
-          returnedDate: new Date(),
+          returnDate: new Date(),
         },
       },
       {
@@ -71,18 +71,6 @@ export default function TransactionDetailsPage() {
               <Pencil className="h-4 w-4 mr-2" />
               Edit
             </Button>
-            {!transaction?.returnedDate && (
-              <Button
-                variant="default"
-                onClick={handleMarkAsReturned}
-                disabled={updateTransaction.isPending}
-              >
-                <CheckCircle className="h-4 w-4 mr-2" />
-                {updateTransaction.isPending
-                  ? "Marking..."
-                  : "Mark as Returned"}
-              </Button>
-            )}
           </div>
         </div>
 

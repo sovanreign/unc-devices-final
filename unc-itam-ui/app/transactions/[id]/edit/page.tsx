@@ -56,7 +56,7 @@ export default function EditTransactionPage() {
   });
 
   const borrowedDate = watch("borrowedDate");
-  const returnedDate = watch("returnedDate");
+  const returnedDate = watch("returnDate");
 
   useEffect(() => {
     const load = async () => {
@@ -67,7 +67,7 @@ export default function EditTransactionPage() {
       setValue("deviceId", tx.deviceId);
       setValue("purpose", tx.purpose);
       setValue("borrowedDate", new Date(tx.borrowedDate));
-      if (tx.returnedDate) setValue("returnedDate", new Date(tx.returnedDate));
+      if (tx.returnDate) setValue("returnDate", new Date(tx.returnDate));
       if (tx.borrowerName) setValue("borrowerName", tx.borrowerName);
     };
 
@@ -79,7 +79,7 @@ export default function EditTransactionPage() {
     if (stored) {
       const parsed = JSON.parse(stored);
       setRole(parsed.role);
-      setUserId(parsed.id);
+      setUserId(parsed.sub);
     }
   }, []);
 
@@ -257,15 +257,15 @@ export default function EditTransactionPage() {
                     mode="single"
                     selected={returnedDate}
                     onSelect={(date) =>
-                      setValue("returnedDate", date!, { shouldValidate: true })
+                      setValue("returnDate", date!, { shouldValidate: true })
                     }
                     initialFocus
                   />
                 </PopoverContent>
               </Popover>
-              {errors.returnedDate && (
+              {errors.returnDate && (
                 <p className="text-xs text-red-500">
-                  {errors.returnedDate.message}
+                  {errors.returnDate.message}
                 </p>
               )}
             </div>

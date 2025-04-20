@@ -29,7 +29,8 @@ import EditDeviceDialog from "./components/edit-device-dialog";
 import DeleteDeviceDialog from "./components/delete-device-dialog";
 
 export default function Page() {
-  const { data: devices = [], isLoading } = useDevices();
+  const [search, setSearch] = useState("");
+  const { data: devices = [], isLoading } = useDevices(search);
   const [selectedDevice, setSelectedDevice] = useState<Device | null>(null);
   const [deviceToDelete, setDeviceToDelete] = useState<Device | null>(null);
 
@@ -42,9 +43,10 @@ export default function Page() {
           </span>
           <Input
             type="search"
-            placeholder="Search..."
+            placeholder="Search devices..."
             className="pl-10"
-            onChange={(e) => console.log(e.target.value)}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
 

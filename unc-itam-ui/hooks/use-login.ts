@@ -30,7 +30,11 @@ export const useLogin = ({ onError }: UseLoginOptions = {}) => {
           localStorage.setItem("user", JSON.stringify(decoded)); // full object with id and role
 
           toast.success("Login successful!");
-          router.push("/users"); // or redirect based on role
+          if (decoded.role === "Teacher") {
+            router.push("/transactions");
+          } else {
+            router.push("/dashboard");
+          }
         } catch (err) {
           toast.error("Failed to decode token.");
         }
@@ -40,7 +44,7 @@ export const useLogin = ({ onError }: UseLoginOptions = {}) => {
     },
     onError: (error) => {
       onError?.(error);
-      toast("Login failed. Please check your credentials.");
+      toast.error("Login failed. Please check your credentials.");
     },
   });
 };

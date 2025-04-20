@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { DatabaseService } from 'src/database/database.service';
 import { passwordEncryption } from 'src/lib/password-encryption.util';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
@@ -21,8 +22,23 @@ export class UsersService {
     });
   }
 
-  findAll() {
-    return this.db.user.findMany({});
+  findAll(q?: string) {
+    let where: Prisma.UserWhereInput = {};
+
+    if (q) {
+      where.OR = [
+        { employeeId: { contains: q, mode: 'insensitive' } },
+        { name: { contains: q, mode: 'insensitive' } },
+        { email: { contains: q, mode: 'insensitive' } },
+      ];
+    }
+
+    return this.db.user.findMany({
+      where,
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
   }
 
   findOne(id: string) {
@@ -41,12 +57,18 @@ export class UsersService {
     });
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const { password, ...rest } = updateUserDto;
+
+    const data = password
+      ? { ...rest, password: await passwordEncryption(password) }
+      : rest;
+
     return this.db.user.update({
       where: {
         id,
       },
-      data: updateUserDto,
+      data,
     });
   }
 

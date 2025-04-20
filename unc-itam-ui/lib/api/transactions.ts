@@ -8,7 +8,7 @@ export interface CreateTransactionInput {
   deviceId: string;
   purpose: string;
   borrowedDate: Date;
-  returnedDate?: Date;
+  returnDate?: Date;
   status: TransactionStatus;
 }
 

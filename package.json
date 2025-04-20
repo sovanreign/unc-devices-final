@@ -1,0 +1,27 @@
+{
+  "name": "unc-devices-final",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"pnpm --filter unc-itam-api start:dev\" \"pnpm --filter unc-itam-ui start\"",
+    "install": "pnpm --filter unc-itam-api install && pnpm --filter unc-itam-ui install",
+    "build": "pnpm --filter unc-itam-ui build",
+    "db": "pnpm --filter unc-itam-api run prisma:migrate && pnpm --filter unc-itam-api run seed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sovanreign/unc-devices-final.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sovanreign/unc-devices-final/issues"
+  },
+  "homepage": "https://github.com/sovanreign/unc-devices-final#readme",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

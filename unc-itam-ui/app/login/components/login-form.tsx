@@ -60,7 +60,7 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="email@unc.edu.ph"
                   {...register("username", {
                     required: "Email is required",
                   })}

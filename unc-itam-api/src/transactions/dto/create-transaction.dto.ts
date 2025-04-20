@@ -10,7 +10,7 @@ import {
 
 export class CreateTransactionDto {
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   borrowerName?: string;
 
   @IsString()

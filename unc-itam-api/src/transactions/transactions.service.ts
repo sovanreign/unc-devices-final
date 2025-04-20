@@ -30,6 +30,9 @@ export class TransactionsService {
         borrower: true,
         device: true,
       },
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
   }
 
@@ -43,11 +46,37 @@ export class TransactionsService {
     });
   }
 
-  update(id: string, updateTransactionDto: UpdateTransactionDto) {
-    return this.db.transaction.update({
+  async update(id: string, updateTransactionDto: UpdateTransactionDto) {
+    const transaction = await this.db.transaction.update({
       where: { id },
-      data: updateTransactionDto,
+      data: {
+        device: {
+          connect: { id: updateTransactionDto.deviceId },
+        },
+        purpose: updateTransactionDto.purpose,
+        borrowedDate: updateTransactionDto.borrowedDate,
+        borrowerName: updateTransactionDto.borrowerName,
+        returnedDate: updateTransactionDto.returnDate,
+      },
     });
+
+    if (updateTransactionDto.returnDate) {
+      console.log('IM IN');
+
+      await this.db.device.update({
+        where: { id: transaction.deviceId },
+        data: { status: 'Available' },
+      });
+
+      await this.db.transaction.update({
+        where: { id: transaction.id },
+        data: {
+          status: 'Returned',
+        },
+      });
+    }
+
+    return transaction;
   }
 
   async remove(id: string) {
